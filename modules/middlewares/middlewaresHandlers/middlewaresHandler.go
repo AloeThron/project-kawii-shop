@@ -81,7 +81,7 @@ func (h *middlewaresHandler) Logger() fiber.Handler {
 func (h *middlewaresHandler) JwtAuth() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		token := strings.TrimPrefix(c.Get("Authorization"), "Bearer ")
-		result, err := kawaiiauth.ParseToken(h.cfg.Jwt(), token)
+		result, err := kawiiauth.ParseToken(h.cfg.Jwt(), token)
 		if err != nil {
 			return entities.NewResponse(c).Error(
 				fiber.ErrUnauthorized.Code,
@@ -170,7 +170,7 @@ func (h *middlewaresHandler) Authorize(expectRoleId ...int) fiber.Handler {
 func (h *middlewaresHandler) ApiKeyAuth() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		key := c.Get("X-Api-Key")
-		if _, err := kawaiiauth.ParseApiKey(h.cfg.Jwt(), key); err != nil {
+		if _, err := kawiiauth.ParseApiKey(h.cfg.Jwt(), key); err != nil {
 			return entities.NewResponse(c).Error(
 				fiber.ErrUnauthorized.Code,
 				string(apiKeyErr),
