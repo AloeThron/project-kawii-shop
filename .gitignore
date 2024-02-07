@@ -38,3 +38,8 @@ vendor
 *.pem
 apikey.txt
 *.txt
+
+assets/
+tests/
+mytests/
+screenshots/
